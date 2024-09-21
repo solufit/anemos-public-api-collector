@@ -38,13 +38,20 @@ services:
       - 3306
     volumes:
       - db-volume:/var/lib/mysql
+    healthcheck:   # here
+      test: ["CMD", "echo", "check", "&&", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
 
   db_migration:
     build:
       context: .
       dockerfile: Docker/db_migration/Dockerfile
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       DATABASE_URL: mysql://root:root@db:3306/database
 
