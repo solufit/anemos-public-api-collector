@@ -1,0 +1,39 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Docker/app/Dockerfile
+    tty: true
+    stdin_open: true
+    command: /bin/bash
+    volumes:
+      - ./..:/go/src/work
+    ports:
+      - "6000:8000"
+    environment:
+      - DATABASE_URL=mysql://root:root@db:3306/database
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "6080:8080"
+    volumes:
+      - ./../docs/swagger.yaml:/openapi.yaml
+    environment:
+      SWAGGER_JSON: /openapi.yaml
+  
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+      MYSQL_USER: database
+      MYSQL_PASSWORD: database
+    expose:
+      - 3306
+    volumes:
+      - db-volume:/var/lib/mysql
+
+volumes:
+  db-volume:
