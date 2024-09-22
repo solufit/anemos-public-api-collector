@@ -1,0 +1,60 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Docker/app/Dockerfile
+    tty: true
+    stdin_open: true
+    command: /bin/bash
+    volumes:
+      - ./..:/go/src/work
+    ports:
+      - "6000:8000"
+    environment:
+      DATABASE_URL: mysql://root:root@db:3306/database
+      GO111MODULE: on
+    depends_on:
+      db_migration:
+        condition: service_completed_successfully
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "6080:8080"
+    volumes:
+      - ./../docs/swagger.yaml:/openapi.yaml
+    environment:
+      SWAGGER_JSON: /openapi.yaml
+  
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+      MYSQL_USER: database
+      MYSQL_PASSWORD: database
+    expose:
+      - 3306
+    volumes:
+      - db-volume:/var/lib/mysql
+    healthcheck:   # here
+      test: ["CMD", "echo", "check", "&&", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  db_migration:
+    build:
+      context: .
+      dockerfile: Docker/db_migration/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: mysql://root:root@db:3306/database
+
+volumes:
+  db-volume:
+
