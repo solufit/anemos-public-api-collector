@@ -79,6 +79,7 @@ jobs:
       run: go mod tidy
 
     - name: Commit changes
+      continue-on-error: true
       run: |
         git add go.mod go.sum
         git commit -m "Update dependencies" || exit
@@ -109,6 +110,7 @@ jobs:
       run: swag init ./main.go
 
     - name: Commit changes
+      continue-on-error: true
       run: |
         git add docs/swagger.yaml
         git commit -m "Update OpenAPI" || exit
