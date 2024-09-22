@@ -81,7 +81,7 @@ jobs:
     - name: Commit changes
       run: |
         git add go.mod go.sum
-        git commit -m "Update dependencies" || return 0
+        git commit -m "Update dependencies" || exit
         git push
 
   update_openapi:
@@ -111,6 +111,6 @@ jobs:
     - name: Commit changes
       run: |
         git add docs/swagger.yaml
-        git commit -m "Update OpenAPI" || return 0
+        git commit -m "Update OpenAPI" || exit
         git push
 
