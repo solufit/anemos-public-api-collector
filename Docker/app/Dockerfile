@@ -14,3 +14,4 @@ FROM gcr.io/distroless/static-debian11
 WORKDIR /app
 COPY --from=base /go/src/app/api /app/api
 ENTRYPOINT [ "/app/api" ]
+
