@@ -103,7 +103,8 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
     - name: Install dependencies
-      run: go mod download
+      run: |
+           go mod download
            go install github.com/swaggo/swag/cmd/swag@latest
 
     - name: Update OpenAPI
