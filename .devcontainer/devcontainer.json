@@ -15,7 +15,7 @@
 			]
 		}
 	},
-	"postCreateCommand": "go install github.com/swaggo/swag/cmd/swag@latest && go install github.com/xo/xo@latest && go install github.com/amacneil/dbmate@latest &&  go install golang.org/x/tools/cmd/goimports@latest && go mod tidy",
+	//"postCreateCommand": "go install github.com/swaggo/swag/cmd/swag@latest && go install github.com/xo/xo@latest && go install github.com/amacneil/dbmate@latest &&  go install golang.org/x/tools/cmd/goimports@latest && go mod tidy",
 	"forwardPorts": [
 		6000,
 		"swagger-ui:6080",
