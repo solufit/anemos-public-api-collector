@@ -16,7 +16,7 @@ type Task struct {
 
 // Task List
 var tasks []Task = []Task{
-	{Name: "Test Function", Func: func(logger slog.Logger) { logger.Info("Hello!") }, Duration: "@every 10s"},
+	{Name: "Anemos Cache", Func: writeCache, Duration: "@every 10s"},
 }
 
 func main() {
