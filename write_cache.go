@@ -1,14 +1,51 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"os"
 	"time"
 
 	"github.com/redis/go-redis/v9"
+	libanemos "github.com/solufit/anemos-public-api-library"
 )
+
+// WriteCache writes data to Redis.
+func writeCache(logger slog.Logger) {
+	logger.Info("Start writing data to Cache")
+
+	// Generate Redis Client
+	client := redisClientGenerator()
+
+	// Get Anemos Data
+	data, err := getAnemosData()
+
+	if err != nil {
+		logger.Error("Failed to get data from Anemos API", slog.Any("error", err))
+		return
+	}
+
+	// Write data to Redis
+	var dataInterface []interface{}
+	err = json.Unmarshal([]byte(data), &dataInterface)
+	if err != nil {
+		logger.Error("Failed to unmarshal data", slog.Any("error", err))
+		return
+	}
+
+	err = libanemos.CreateCache(client, dataInterface)
+
+	if err != nil {
+		logger.Error("Failed to write data to Redis", slog.Any("error", err))
+		return
+	}
+
+	logger.Info("Successfully wrote data to Cache")
+
+}
 
 // RedisClientGenerator is a function that generates a Redis client from env.
 func redisClientGenerator() *redis.Client {
