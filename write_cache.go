@@ -22,7 +22,6 @@ func writeCache(logger slog.Logger) {
 
 	// Get Anemos Data
 	data, err := getAnemosData()
-	fmt.Println(data)
 
 	if err != nil {
 		logger.Error("Failed to get data from Anemos API", slog.Any("error", err))
