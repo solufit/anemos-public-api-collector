@@ -22,6 +22,7 @@ func writeCache(logger slog.Logger) {
 
 	// Get Anemos Data
 	data, err := getAnemosData()
+	fmt.Println(data)
 
 	if err != nil {
 		logger.Error("Failed to get data from Anemos API", slog.Any("error", err))
@@ -88,7 +89,7 @@ func getAnemosData() (string, error) {
 	// Get data from anemosURL
 
 	client := &http.Client{
-		Timeout: 10 * time.Second,
+		Timeout: 60 * time.Second,
 	}
 
 	req, err := http.NewRequest(http.MethodGet, anemosURL, nil)
