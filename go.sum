@@ -24,8 +24,8 @@ github.com/redis/go-redis/v9 v9.6.1 h1:HHDteefn6ZkTtY5fGUE8tj8uy85AHk6zP7CpzIAM0
 github.com/redis/go-redis/v9 v9.6.1/go.mod h1:0C0c6ycQsdpVNQpxb1njEQIqkx5UcsM8FJCQLgE9+RA=
 github.com/robfig/cron/v3 v3.0.1 h1:WdRxkvbJztn8LMz/QEvLN5sBU+xKpSqwwUO1Pjr4qDs=
 github.com/robfig/cron/v3 v3.0.1/go.mod h1:eQICP3HwyT7UooqI/z+Ov+PtYAWygg1TEWWzGIFLtro=
-github.com/solufit/anemos-public-api-library v0.2.4-alpha h1:cZ1gff+NRLx4kXjD8vdYcwkwvL+hvS9yEtgPy/mXgsk=
-github.com/solufit/anemos-public-api-library v0.2.4-alpha/go.mod h1:3GtNFRPeLK2sGEkkW0nwIUqTlI9Wz+eVoA9/oJphDTw=
+github.com/solufit/anemos-public-api-library v0.3.1-alpha h1:gCcmHYJGeCKB7V1mWEIhWCk1tnS2t805t1OXBm3WT3E=
+github.com/solufit/anemos-public-api-library v0.3.1-alpha/go.mod h1:3GtNFRPeLK2sGEkkW0nwIUqTlI9Wz+eVoA9/oJphDTw=
 github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
 github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 github.com/yuin/gopher-lua v1.1.1 h1:kYKnWBjvbNP4XLT3+bPEwAXJx262OhaHDWDVOPjL46M=
