@@ -3,7 +3,7 @@ module github.com/solufit/anemos-public-api-collector
 go 1.23.1
 
 require (
-	github.com/redis/go-redis/v9 v9.6.1
+	github.com/redis/go-redis/v9 v9.7.0
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/solufit/anemos-public-api-library v0.2.4-alpha
 	github.com/stretchr/testify v1.9.0
